@@ -1,0 +1,120 @@
+###### tango green text
+colors:
+  primary:
+    background: '#1e1e1e'
+    foreground: '#8ae234'
+
+  selection:
+    text: '#1e1e1e'
+    background: '#add8e6'
+
+  normal:
+    black:   '#1e1e1e'
+    red:     '#cc0000'
+    green:   '#4e9a06'
+    yellow:  '#c4a000'
+    blue:    '#3465a4'
+    magenta: '#75507b'
+    cyan:    '#06989a'
+    white:   '#d3d7cf'
+
+  bright:
+    black:   '#555753'
+    red:     '#ef2929'
+    green:   '#8ae234'
+    yellow:  '#fce84f'
+    blue:    '#739fcf'
+    magenta: '#ad7fa8'
+    cyan:    '#34e2e2'
+    white:   '#eeeeec'
+
+###### purple yellow
+colors:
+  primary:
+    background: '#1c1c1c'
+    foreground: '#c19dc0'
+
+  selection:
+    text: '#555555'
+    background: '#add8e6'
+
+  normal:
+    black:   '#1c1c1c'
+    red:     '#805931'
+    green:   '#b4982e'
+    yellow:  '#9a7949'
+    blue:    '#988257'
+    magenta: '#b89152'
+    cyan:    '#d3bb61'
+    white:   '#a888a0'
+
+  bright:
+    black:   '#786071'
+    red:     '#805931'
+    green:   '#b4982e'
+    yellow:  '#9a7949'
+    blue:    '#988257'
+    magenta: '#b89152'
+    cyan:    '#d3bb61'
+    white:   '#a888a0'
+
+###### gruvbox dark
+colors:
+  primary:
+    background: '#282828'
+    foreground: '#ebdbb2'
+
+  selection:
+    text: '#282828'
+    background: '#add8e6'
+
+  normal:
+    black:   '#282828'
+    red:     '#cc241d'
+    green:   '#98971a'
+    yellow:  '#d79921'
+    blue:    '#458588'
+    magenta: '#b16286'
+    cyan:    '#689d6a'
+    white:   '#a89984'
+
+  bright:
+    black:   '#928374'
+    red:     '#fb4934'
+    green:   '#b8bb26'
+    yellow:  '#fabd2f'
+    blue:    '#83a598'
+    magenta: '#d3869b'
+    cyan:    '#8ec07c'
+    white:   '#ebdbb2'
+
+###### solarized light
+colors:
+  primary:
+    background: '#fdf6e3'
+    foreground: '#657b83'
+
+  selection:
+    text: '#002b36'
+    background: '#657b83'
+
+  normal:
+    black:   '#eee8d5'
+    red:     '#dc322f'
+    green:   '#859900'
+    yellow:  '#b58900'
+    blue:    '#268bd2'
+    magenta: '#d33682'
+    cyan:    '#2aa198'
+    white:   '#073642'
+
+  bright:
+    black:   '#999489'
+    red:     '#dc322f'
+    green:   '#859900'
+    yellow:  '#b58900'
+    blue:    '#268bd2'
+    magenta: '#d33682'
+    cyan:    '#2aa198'
+    white:   '#002b36'
+

@@ -1,0 +1,60 @@
+#!/bin/sh
+
+# Use neovim for vim if present.
+command -v nvim >/dev/null && alias vim="nvim" vimdiff="nvim -d"
+
+# Commands shortened
+alias \
+	cp="cp -iv" \
+	diff="diff --color=auto" \
+	e="$EDITOR" \
+	f="$FILE" \
+	grep="grep --color=auto" \
+	k="kill" \
+	ka="killall" \
+  ls="lsd" \
+  lsl="lsd -lah" \
+ 	mi="ifuse ~/.local/mnt/phone/" \
+ 	ui="fusermount -u ~/.local/mnt/phone" \
+	mv="mv -iv" \
+	mkd="mkdir -pv" \
+	rm="rm -vI" \
+	sdn="sudo -A shutdown -h now" \
+  ud="sudo udisksctl power-off -b" \
+  s="sudo systemctl" \ 
+
+# Programs
+alias \
+	ec="ebook-convert" \
+	ffmpeg="ffmpeg -hide_banner" \
+  grubmk="sudo grub-mkconfig -o /boot/grub/grub.cfg" \
+	lf="lf -command 'set icons'" \
+	rs="rsync -avP" \
+  rsm="sudo rsm" \
+	upweb="rsync -vrP --delete-after ~/.local/src/www/mattkel/ root@mattkel.com:/var/www/mattkel/" \
+	suv="sudo nvim" \
+	trem="transmission-remote" \
+	upd="sudo apt update" \
+	upg="sudo apt upgrade" \
+	apti="sudo apt install" \
+	aptr="sudo apt remove" \
+	aptra="sudo apt autoremove" \
+	apts="sudo apt search" \
+	v="nvim" \
+	vs="vscodium" \
+  p="sudo pacman" \
+  y="yay" \
+ 	ytv="youtube-dl" \
+ 	yta="youtube-dl --ignore-errors --extract-audio --audio-format mp3" \
+  yts="youtube-dl --all-subs" \
+ 	ytf="ytfzf -t" \
+	z="zathura" 
+
+# use fzf to view files in current directory and sub directories and open them in nvim 
+zf() { fzf --preview="sed 31q {}" | xargs -r $EDITOR ;}
+# use fzf to copy a file/folder
+zc() { cp -r -iv "$1" "$(awk '{print $2}' ~/.config/shell/bm-dirs | fzf | sed "s|~|$HOME|")" ;}
+# use fzf to move a file/folder
+zm() { mv -iv "$1" "$(awk '{print $2}' ~/.config/shell/bm-dirs | fzf | sed "s|~|$HOME|")" ;}
+# use fzf to view scripts and open them in nvim 
+zs() { du -a ~/.local/bin/* | awk '{print $2}' | fzf --preview="sed 31q {}" | xargs -r $EDITOR ;}

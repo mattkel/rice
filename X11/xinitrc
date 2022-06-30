@@ -1,0 +1,13 @@
+#!/bin/sh
+
+. ~/.xprofile
+
+exec dwm
+
+#exec startxfce4
+
+#ssh-agent dwm
+# weird bug. without dbus-launch, notifications dont work for applications
+#exec dbus-launch dwm
+#exec dbus-launch --exit-with-session dwm
+#exec dbus-launch --exit-with-session

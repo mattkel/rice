@@ -1,0 +1,6 @@
+!Xft.dpi: 93
+Xft.dpi: 96
+!Xft.dpi: 102
+Nsxiv.bar.font: GoMono Nerd Font:pixelsize=12:antialias=true:autohint=true
+Nsxiv.bar.foreground: #eeeeee
+Nsxiv.bar.background: #000000

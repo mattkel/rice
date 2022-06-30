@@ -1,0 +1,230 @@
+# Basic Settings
+set shell zsh
+set shellopts '-eu'
+set ifs "\n"
+set scrolloff 10
+set period 1
+set ignorecase true
+#set hidden true
+set period 1
+#set drawbox true
+#set icons true
+set previewer stpv
+set cleaner stpvimgclr
+&stpvimg --listen $id
+
+# cmds/functions
+cmd open ${{
+  case $(file --mime-type $f -b) in
+  image/vnd.djvu|application/pdf|application/octet-stream) setsid -f zathura $fx >/dev/null 2>&1 ;; text/*) $EDITOR $fx;;
+  image/x-xcf) setsid -f gimp $f >/dev/null 2>&1 ;;
+	image/svg+xml) display -- $f ;;
+	image/*) rotdir $f | grep -i "\.\(png\|jpg\|jpeg\|gif\|webp\|tif\|ico\|heic\)\(_large\)*$" | nsxiv -aio 2>/dev/null | lf-select ;;
+
+  audio/*) mpv --audio-display=no $f ;;
+  video/*) setsid -f mpv $f -quiet >/dev/null 2>&1 ;;
+  application/pdf|application/vnd*|application/epub*) setsid -f zathura $fx >/dev/null 2>&1 ;;
+  application/docx*) setsid -f zaread $fx >/dev/null 2>&1 ;;
+  application/json*) setsid -f st -e nvim $fx >/dev/null 2>&1 ;;
+  *) for f in $fx; do setsid -f $OPENER $f >/dev/null 2>&1; done;;
+  esac
+}}
+
+cmd mkdir $mkdir -p "$(echo $* | tr ' ' '\ ')"
+
+cmd mkdir ${{
+  printf "📁 Directory Name: "
+  read ans
+  mkdir $ans
+}}
+
+cmd mkfile ${{
+  printf "📄 File Name: "
+  read ans
+  $EDITOR $ans
+}}
+
+cmd chmod ${{
+  printf "Mode Bits: "
+  read ans
+
+  for file in "$fx"
+  do
+    chmod $ans $file
+  done
+
+  lf -remote 'send reload'
+}}
+
+cmd sudomkfile ${{
+  printf "📄❗ File Name (with sudo): "
+  read ans
+  sudo $EDITOR $ans
+}}
+
+cmd fzf_jump ${{
+  res="$(find . -maxdepth 3 | fzf --reverse --header='Jump to location')"
+  if [ -f "$res" ]; then
+    cmd="select"
+  elif [ -d "$res" ]; then
+    cmd="cd"
+  fi
+  lf -remote "send $id $cmd \"$res\""
+}}
+
+cmd moveto ${{
+	clear; tput cup $(($(tput lines)/3)); tput bold
+	set -f
+	clear; echo "Move to where?"
+	dest="$(sed -e 's/\s*#.*//' -e '/^$/d' -e 's/^\S*\s*//' ${XDG_CONFIG_HOME:-$HOME/.config}/shell/bm-dirs | fzf | sed 's|~|$HOME|')" &&
+	for x in $fx; do
+		eval mv -iv \"$x\" \"$dest\"
+	done &&
+	notify-send -t 2000 "🚚 File(s) moved." "File(s) moved to $dest."
+}}
+
+cmd copyto ${{
+	clear; tput cup $(($(tput lines)/3)); tput bold
+	set -f
+	clear; echo "Copy to where?"
+	dest="$(sed -e 's/\s*#.*//' -e '/^$/d' -e 's/^\S*\s*//' ${XDG_CONFIG_HOME:-$HOME/.config}/shell/bm-dirs | fzf | sed 's|~|$HOME|')" &&
+	for x in $fx; do
+		eval cp -ivr \"$x\" \"$dest\"
+	done &&
+	notify-send -t 2000 "📋 File(s) copied." "File(s) copies to $dest."
+}}
+
+# Archive bindings
+cmd unarchive ${{
+  case "$f" in
+      *.zip) unzip "$f" ;;
+      *.tar.gz) tar -xzvf "$f" ;;
+      *.tar.bz2) tar -xjvf "$f" ;;
+      *.tar) tar -xvf "$f" ;;
+      *) echo "Unsupported format" ;;
+  esac
+}}
+
+cmd zip %zip -r "$f" "$f"
+cmd tar %tar cvf "$f.tar" "$f"
+cmd targz %tar cvzf "$f.tar.gz" "$f"
+cmd tarbz2 %tar cjvf "$f.tar.bz2" "$f"
+
+# Trash cli bindings
+cmd trash ${{
+  files=$(printf "$fx" | tr '\n' ';')
+  while [ "$files" ]; do
+    # extract the substring from start of string up to delimiter.
+    # this is the first "element" of the string.
+    file=${files%%;*}
+
+    trash-put "$(basename "$file")"
+    # if there's only one element left, set `files` to an empty string.
+    # this causes us to exit this `while` loop.
+    # else, we delete the first "element" of the string from files, and move onto the next.
+    if [ "$files" = "$file" ]; then
+      files=''
+    else
+      files="${files#*;}"
+    fi
+  done
+}}
+
+cmd clear_trash %trash-empty
+
+cmd restore_trash ${{
+  trash-restore
+}}
+
+cmd setbg "$1"
+cmd bulkrename $vidir
+
+# show current directory in window title
+cmd on-cd &{{
+    printf "\033]0; $(pwd | sed "s|$HOME|~|")\007" > /dev/tty
+}}
+
+# also run at startup
+on-cd
+
+# Bindings
+# Remove some defaults
+map m
+map o
+map n
+map "'"
+map '"'
+map d
+map c
+map e
+map f
+
+# File Openers
+map ee $$EDITOR "$f"
+map u $view "$f"
+map <c-f> $lf -remote "send $id select '$(fzf)'"
+map J $lf -remote "send $id cd $(sed -e 's/\s*#.*//' -e '/^$/d' -e 's/^\S*\s*//' ${XDG_CONFIG_HOME:-$HOME/.config}/shell/bm-dirs | fzf)"
+#map J $lf -remote "send $id cd $(cut -d'	' -f2 ${XDG_CONFIG_HOME:-$HOME/.config}/shell/bm-dirs | fzf)"
+
+# Archive Mappings
+map az zip
+map at tar
+map ag targz
+map ab targz
+map au unarchive
+
+# Trash Mappings
+map tc clear_trash
+map tr restore_trash
+
+# Basic Functions
+map . set hidden!
+map f fzf_jump
+map yy copy
+map dd cut
+map DD delete
+map p paste
+map C copyto
+map M moveto
+#map <enter> open
+map <enter> shell
+map mf mkfile
+map mr sudomkfile
+map md mkdir
+map ms $mkscript
+map ch chmod
+map bg $setbg $f
+map br $vimv $fx
+map r rename
+map B bulkrename
+map gg top
+map G bottom
+map R reload
+map C clear
+map U unselect
+
+# Keyboard Shortcuts
+map gdo cd ~/Documents/
+map gdl cd ~/Downloads/
+map gmm cd ~/Music/
+map gpp cd ~/Pictures/
+map gps cd ~/Pictures/sshots/
+map gv cd ~/Videos/
+
+map gmw cd /windows/
+map gmn cd /mnt/
+map gme cd /media/
+map gmb cd /media/books
+
+map gcf cd ~/.config/
+map gll cd ~/.local/
+map glh cd ~/.local/share/
+map gls cd ~/.local/src/
+map glr cd ~/.local/repos/
+map glbb cd ~/.local/bin/
+map glbc cd ~/.local/bin/cron/
+map glbs cd ~/.local/bin/statusbar/
+map glbx cd ~/.local/bin/xmenu/
+
+map gtr cd ~/.local/share/Trash/files/
+map gtm cd /tmp/ 

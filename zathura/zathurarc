@@ -1,0 +1,36 @@
+set sandbox none
+set statusbar-h-padding 8
+set statusbar-v-padding 8
+set page-padding 12
+set selection-clipboard clipboard
+map u scroll half-up
+map d scroll half-down
+map D toggle_page_mode
+map r reload
+map R rotate
+map K zoom in
+map J zoom out
+map i recolor
+map p print
+set font "GoMono Nerd Font 9"
+
+set default-bg "#1e1e1e"
+
+set inputbar-bg "#1e1e1e"
+set inputbar-fg "#eeeeee"
+
+set completion-bg "#1e1e1e"
+set completion-fg "#eeeeee"
+
+set statusbar-bg "#1e1e1e"
+set statusbar-fg "#eeeeee"
+
+### bg
+
+#set recolor-lightcolor "#282828"
+set recolor-lightcolor "#1e1e1e"
+
+### fg
+
+set recolor-darkcolor "#ebdbb2"
+#set recolor-darkcolor "#cccccc"

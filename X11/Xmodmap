@@ -1,0 +1,14 @@
+! swap control and alt
+
+!clear mod1
+!clear control
+!keycode 37 = Control_L
+!keycode 64 = Alt_L
+!add control = Alt_L Alt_R
+!add mod1 = Control_L Control_R
+
+! make F7 7 &
+!keycode 235 = 7 ampersand 7 ampersand
+
+! make F10 7 &
+!keycode 245 = 7 ampersand 7 ampersand

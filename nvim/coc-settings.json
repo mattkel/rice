@@ -1,0 +1,71 @@
+{
+  "pairs.enableCharacters": [
+    "(",
+    "[",
+    "{",
+    "'",
+    "\"",
+    "`"
+  ],
+  "suggest.noselect": false,
+  "coc.preferences.formatOnSaveFiletypes": [
+    "javascript",
+    "typescript",
+    "typescriptreact",
+    "json",
+    "css",
+    "html",
+    "javascriptreact",
+    "typescript.tsx",
+    "graphql"
+  ],
+  "explorer.icon.enableNerdfont": true,
+  "explorer.quitOnOpen": true,
+  "explorer.position": "left",
+  "explorer.file.showHiddenFiles": true,
+  "explorer.file.column.clip.copy": "",
+  "explorer.file.column.clip.cut": "",
+  "explorer.keyMappings.global": {
+    "<tab>": "actionMenu",
+    "<space>": "toggleSelection",
+    "h": "collapse",
+    "J": [
+      "toggleSelection",
+      "nodeNext"
+    ],
+    "K": [
+      "toggleSelection",
+      "nodePrev"
+    ],
+    "l": [
+      "expandable?",
+      "expand",
+      "open"
+    ],
+    "<2-LeftMouse>": [
+      "expandable?",
+      [
+        "expanded?",
+        "collapse",
+        "expand"
+      ],
+      "open"
+    ],
+    "gp": "gotoParent",
+    "H": "open:split",
+    "V": "open:vsplit",
+    "t": "open:tab",
+    "m": "addFile",
+    "M": "addDirectory",
+    "DD": "delete",
+    "yy": "copyFile",
+    "xx": "cutFile",
+    "p": "pasteFile",
+    "r": "rename",
+    "R": "refresh",
+    "f": "search",
+    "?": "help",
+    "q": "quit",
+    "<esc>": "esc"
+  }
+}

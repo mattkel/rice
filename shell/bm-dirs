@@ -1,0 +1,9 @@
+pd  ..
+ma  /media/Archive/movies
+mp  /media/movies
+h   $HOME
+dl  ${XDG_DOWNLOAD_DIR:-$HOME/Downloads}
+do  ${XDG_DOCUMENTS_DIR:-$HOME/Documents}
+pp  ${XDG_PICTURES_DIR:-$HOME/Pictures}
+mm  ${XDG_MUSIC_DIR:-$HOME/Music}
+vv  ${XDG_VIDEOS_DIR:-$HOME/Videos}

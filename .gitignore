@@ -1,0 +1,25 @@
+# Ignore everything in repository root 
+/*
+
+# Files/folders to not ignore
+!/.gitignore
+!/user-dirs.dirs
+!/../.redshiftgrc
+!/../.xprofile
+!/../.zshenv
+
+# Folder to not ignore
+!/alacritty/
+!/dunst/
+!/fontconfig/
+!/gtk-3.0/
+!/lf/
+!/mpv/
+!/neofetch/
+!/newsboat/
+!/nvim/
+!/picom/
+!/shell/
+!/X11/
+!/zathura/
+!/zsh/
