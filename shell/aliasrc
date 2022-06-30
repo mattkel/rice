@@ -53,7 +53,7 @@ alias \
   ga="git add ." \
   gcm="git commit -m" \
   gbr="git branch -M main" \
-  gp="git push -u origin main"
+  gpu="git push -u origin main"
 
 # use fzf to view files in current directory and sub directories and open them in nvim 
 zf() { fzf --preview="sed 31q {}" | xargs -r $EDITOR ;}
