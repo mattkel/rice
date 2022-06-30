@@ -4,9 +4,6 @@
 # Files/folders to not ignore
 !/.gitignore
 !/user-dirs.dirs
-!/../.redshiftgrc
-!/../.xprofile
-!/../.zshenv
 
 # Folder to not ignore
 !/alacritty/
@@ -23,5 +20,3 @@
 !/X11/
 !/zathura/
 !/zsh/
-
-mpv/watch_later/
