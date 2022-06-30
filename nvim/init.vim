@@ -377,4 +377,8 @@ colorscheme codedark
   " Recompile xmenu on config edit.
   autocmd BufWritePost ~/.local/src/xmenu/config.h !cd ~/.local/src/s-tools/xmenu/; sudo make install
 
+  " copy files to config directory for backup
+  autocmd BufWritePost ~/.xprofile !cp ~/.xprofile ~/.config/shell/
+  autocmd BufWritePost ~/.zshenv !cp ~/.zshenv ~/.config/zsh/
+
 endif
