@@ -20,5 +20,15 @@
 !/shell/
 !/X11/
 !/zathura/
-!/zsh/
+
+#!/zsh/
+#/zsh/histfile
+!/zsh
+/zsh/*
 /zsh/histfile
+
+# exclude everything except directory foo/bar
+/*
+!/foo
+/foo/*
+!/foo/bar
