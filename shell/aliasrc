@@ -48,7 +48,12 @@ alias \
  	yta="youtube-dl --ignore-errors --extract-audio --audio-format mp3" \
   yts="youtube-dl --all-subs" \
  	ytf="ytfzf -t" \
-	z="zathura" 
+	z="zathura" \
+  gi="git init" \
+  ga="git add ." \
+  gcm="git commit -m" \
+  gbr="git branch -M main" \
+  gp="git push -u origin main"
 
 # use fzf to view files in current directory and sub directories and open them in nvim 
 zf() { fzf --preview="sed 31q {}" | xargs -r $EDITOR ;}
