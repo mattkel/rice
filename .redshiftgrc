@@ -1,1 +1,6 @@
-/home/shamo/.redshiftgrc
+min
+temps=6500:3600
+latlon=-37.813629:144.963058
+speed=1000
+method=Auto
+map=177.00,100.00;3.00,100.00;-6.00,0.00;-174.00,0.00;

@@ -1,1 +1,64 @@
-/home/shamo/.xprofile
+#!/bin/sh
+
+# automatically start gpg-agent
+if [ -x /usr/bin/gpg-agent ]; then 
+ eval "$(/usr/bin/gpg-agent --daemon)"
+fi
+
+# automatically shutdown gpg-agent
+if [ -n "${GPG_AGENT_INFO}" ]; then
+  kill $(echo ${GPG_AGENT_INFO} | cut -d':' -f 2) >/dev/null 2>&1
+fi
+
+# load Xresources for dpi settings
+xrdb ~/.config/X11/Xresources
+
+#---------- startup applications ----------#
+# update weather tray icon
+sb_temp & 
+# set default display
+arandrlayout.sh &
+# set wallpaper
+nitrogen --restore &
+# set volume
+pamixer --set-volume 30 &
+# status bar
+dwmblocks &
+# compositor
+picom &
+# notification daemon
+dunst &
+# remove mouse on idle
+unclutter &
+# keyboard and mouse settings
+remaps &
+# turn on num lock on startup
+xdotool key Num_Lock &
+# start syncthing with no webui
+/usr/bin/syncthing -no-browser -no-restart -logflags=0 &
+# allow audio through speaker when headphones are connected
+amixer -c 1 set 'Auto-Mute Mode' Disabled &
+# start virt-manager network
+sudo virsh net-start default &
+# start xfce4 panel
+#xfce4-panel --disable-wm-check &
+
+# ---------- tray icons ----------#
+# prevent screen from sleeping #caffeinate sleep 9999999
+caffeine -a &
+# tone down blue light at night
+redshiftgui &
+# tray icon for switching audio outputs
+indicator-sound-switcher &
+# mullvad-vpn app
+mullvad-vpn &
+# network manager applet
+nm-applet &
+# blueman tray icon for bluez and blueman
+blueman-applet &
+# mega sync service
+megasync &
+# password manager
+keepassxc &
+# corsair keyboard app
+ckb-next -b &
