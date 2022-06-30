@@ -1,12 +1,12 @@
 # Ignore everything in repository root 
 /*
 
-# Files/folders to not ignore
+# Files to include
 !/.gitignore
 !/user-dirs.dirs
 !/.redshiftgrc
 
-# Folder to not ignore
+# Folder to include
 !/alacritty/
 !/dunst/
 !/fontconfig/
@@ -21,8 +21,6 @@
 !/X11/
 !/zathura/
 
-#!/zsh/
-#/zsh/histfile
-!/zsh
-/zsh/*
+!/zsh/
+!/zsh/*
 /zsh/histfile
