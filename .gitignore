@@ -20,7 +20,4 @@
 !/shell/
 !/X11/
 !/zathura/
-
 !/zsh/
-!/zsh/*
-/zsh/histfile

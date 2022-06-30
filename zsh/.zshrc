@@ -14,7 +14,7 @@ setopt autocd
 stty stop undef
 
 # sets zsh history file - must be in .zshrc to save autosuggestions
-HISTFILE="$ZDOTDIR/histfile"
+HISTFILE="${XDG_CACHE_HOME:-$HOME/.cache}/zsh/histfile"
 HISTSIZE=1000
 SAVEHIST=1000
 
