@@ -4,6 +4,7 @@
 # Files/folders to not ignore
 !/.gitignore
 !/user-dirs.dirs
+!/.redshiftgrc
 
 # Folder to not ignore
 !/alacritty/
